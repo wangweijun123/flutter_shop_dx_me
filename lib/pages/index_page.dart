@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop_dx_me/providers/current_index_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../config/string.dart';
 import '../log/log_constanst.dart';
@@ -36,6 +37,8 @@ class IndexPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 屏幕适配
+    ScreenUtil.init(context, designSize: const Size(750, 1334));
     //取到当前索引状态值
     var currentIndexProvider =
         Provider.of<CurrentIndexProvider>(context, listen: true);
