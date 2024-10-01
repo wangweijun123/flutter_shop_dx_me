@@ -42,7 +42,10 @@ class _HomePageState extends State<HomePage> {
             // myPrint("333 = $floor1");
             // myPrint("444 = $fp1");
             return ListView(
-              children: [SwiperDiy(swiperDataList: swiperDataList)],
+              children: [
+                SwiperDiy(swiperDataList: swiperDataList),
+                TopNavigator(navigatorList: navigatorList),
+              ],
             );
           } else {
             return Text("no data");
@@ -76,6 +79,45 @@ class SwiperDiy extends StatelessWidget {
         },
         pagination: SwiperPagination(),
         autoplay: true,
+      ),
+    );
+  }
+}
+
+class TopNavigator extends StatelessWidget {
+  final List<Map> navigatorList;
+
+  const TopNavigator({super.key, required this.navigatorList});
+
+  Widget _gridViewItemUI(BuildContext context, Map item, int index) {
+    return InkWell(
+      onTap: () {
+        //跳转到分类页面
+        // _goCategory(context, index, item['firstCategoryId']);
+      },
+      child: Column(
+        children: <Widget>[
+          Image.network(
+            item['image'],
+            width: ScreenUtil().setWidth(95),
+          ),
+          Text(item['firstCategoryName'])
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var tempIndex = -1;
+    return Container(
+      height: ScreenUtil().setHeight(320),
+      child: GridView.count(
+        crossAxisCount: 5,
+        children: navigatorList.map((item) {
+          tempIndex++;
+          return _gridViewItemUI(context, item, tempIndex);
+        }).toList(),
       ),
     );
   }
