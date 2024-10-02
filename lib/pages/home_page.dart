@@ -16,11 +16,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //火爆专区分页
+  int page = 1;
+
+  //火爆专区数据
+  List<Map> hotGoodsList = [];
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     myPrint('首页刷新了...');
+    _getHotGoods();
   }
 
   @override
@@ -64,6 +71,20 @@ class _HomePageState extends State<HomePage> {
         },
       ),
     );
+  }
+
+  void _getHotGoods() {
+    var formPage = {'page': page};
+    request('getHotGoods', formData: formPage).then((val) {
+      var data = json.decode(val.toString());
+      List<Map> newGoodsList = (data['data'] as List).cast();
+      myPrint("_getHotGoods newGoodsList.size = ${newGoodsList.length}");
+      //设置火爆专区数据列表
+      setState(() {
+        hotGoodsList.addAll(newGoodsList);
+        page++;
+      });
+    });
   }
 }
 
