@@ -63,6 +63,7 @@ class _HomePageState extends State<HomePage> {
                   floorPic: fp1,
                 ),
                 Floor(floor: floor1),
+                _hotGoods(),
               ],
             );
           } else {
@@ -86,6 +87,91 @@ class _HomePageState extends State<HomePage> {
       });
     });
   }
+
+  //火爆专区子项
+  Widget _wrapList() {
+    if (hotGoodsList.length != 0) {
+      List<Widget> listWidget = hotGoodsList.map((val) {
+        return InkWell(
+          onTap: () {
+            // Application.router
+            //     .navigateTo(context, "/detail?id=${val['goodsId']}");
+          },
+          child: Container(
+            width: ScreenUtil().setWidth(372),
+            color: Colors.white,
+            padding: EdgeInsets.all(5.0),
+            margin: EdgeInsets.only(bottom: 3.0),
+            child: Column(
+              children: <Widget>[
+                Image.network(
+                  val['image'],
+                  width: ScreenUtil().setWidth(375),
+                  height: 200,
+                  fit: BoxFit.cover,
+                ),
+                Text(
+                  val['name'],
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: ScreenUtil().setSp(26)),
+                ),
+                Row(
+                  children: <Widget>[
+                    Text(
+                      '￥${val['presentPrice']}',
+                      style: TextStyle(color: KColor.presentPriceTextColor),
+                    ),
+                    Text(
+                      '￥${val['oriPrice']}',
+                      style: TextStyle(color: KColor.oriPriceColor),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      }).toList();
+
+      return Wrap(
+        spacing: 2,
+        children: listWidget,
+      );
+    } else {
+      return Text('');
+    }
+  }
+
+  //火爆专区组合
+  Widget _hotGoods() {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          hotTitle,
+          _wrapList(),
+        ],
+      ),
+    );
+  }
+
+  //火爆专区标题
+  Widget hotTitle = Container(
+    margin: EdgeInsets.only(top: 10.0),
+    padding: EdgeInsets.all(5.0),
+    alignment: Alignment.center,
+    decoration: BoxDecoration(
+      color: Colors.white,
+      border: Border(
+        bottom: BorderSide(width: 0.5, color: KColor.defaultBorderColor),
+      ),
+    ),
+    //火爆专区
+    child: Text(
+      KString.hotGoodsTitle,
+      style: TextStyle(color: KColor.homeSubTitleTextColor),
+    ),
+  );
 }
 
 class SwiperDiy extends StatelessWidget {
