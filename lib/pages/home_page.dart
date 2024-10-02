@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                 (data['data']['recommend'] as List).cast(); //商品推荐
             List<Map> floor1 = (data['data']['floor1'] as List).cast(); //底部商品推荐
             Map fp1 = data['data']['floor1Pic']; //广告
-            myPrint("111 = $swiperDataList");
+            // myPrint("111 = $swiperDataList");
             // myPrint("2222= $navigatorList");
             // myPrint("333 = $floor1");
             // myPrint("444 = $fp1");

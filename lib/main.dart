@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop_dx_me/pages/index_page.dart';
+import 'package:flutter_shop_dx_me/providers/category_goods_list_provider.dart';
+import 'package:flutter_shop_dx_me/providers/category_provider.dart';
 import 'package:flutter_shop_dx_me/providers/current_index_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +22,8 @@ class MyApp extends StatelessWidget {
       // Failed assertion: line 71 pos 16: 'children.isNotEmpty': is not true.
       providers: [
         ChangeNotifierProvider(create: (_) => CurrentIndexProvider()),
+        ChangeNotifierProvider(create: (_) => CategoryProvider()),
+        ChangeNotifierProvider(create: (_) => CategoryGoodsListProvider()),
       ],
       child: Container(
         child: MaterialApp(

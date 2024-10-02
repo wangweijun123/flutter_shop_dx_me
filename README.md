@@ -14,3 +14,15 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+D:\>cd work\node_shop_server
+D:\work\node_shop_server>npm start
+
+
+接口
+获取分类:
+http://192.168.0.32:3000/getHomePageContent
+
+获取分类:
+http://192.168.0.32:3000/getCategory
